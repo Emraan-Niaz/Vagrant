@@ -8,6 +8,6 @@ Vagrant.configure("2") do |config|
       vbox.cpus = "2"
       vbox.memory = "4096"
     end
-    gitlab.vm.provision "shell", path: "script/gitlab-provision.sh"
+    gitlab.vm.provision "shell", path: "scripts/gitlab-provision.sh"
   end
 end
