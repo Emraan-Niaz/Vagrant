@@ -11,4 +11,15 @@ apt-get -y install docker-ce docker-ce-cli containerd.io #install the downloaded
 usermod -aG docker vagrant
 systemctl enable docker #enable our docker
 #to check the docker response use: vagrant@gitlab:~$ docker run hello-world
+mkdir -p /srv/gitlab/{data,logs.config } #nötige Verzeichniss erstellen
+# Gitlab-Ce Container erstellen
+docker run --detach \
+--hostname gitlab \
+--publish 80:80 \
+--name gitlab \
+--restart always \
+--volume /srv/gitlab/config:/etc/gitlab \
+--volume /srv/gitlab/logs:/var/log/gitlab \
+--volume /srv/gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce:latest
 
